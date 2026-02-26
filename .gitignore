@@ -1,0 +1,25 @@
+# Foundry
+out/
+cache/
+lib/
+broadcast/
+test-results/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+
+# Logs and Data
+logs/
+data/nft_transfers.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
