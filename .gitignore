@@ -14,10 +14,6 @@ yarn-error.log*
 # Environment
 .env
 
-# Logs and Data
-logs/
-data/nft_transfers.json
-
 # IDE
 .vscode/
 .idea/
