@@ -122,18 +122,15 @@ contract CCIPNFTBridge is CCIPReceiver, IERC721Receiver, Ownable {
      * @dev Estimate transfer cost in LINK tokens.
      */
     function estimateTransferCost(
-        uint64 destinationChainSelector,
-        address receiver,
-        uint256 tokenId
+        uint64 destinationChainSelector
     ) external view returns (uint256) {
         address peerBridge = peerBridges[destinationChainSelector];
         if (peerBridge == address(0)) return 0;
 
-        // Note: tokenURI might fail if token is already burned, so we might need a placeholder for estimation
-        string memory tokenURI = "placeholder"; 
-        try nft.tokenURI(tokenId) returns (string memory _uri) {
-            tokenURI = _uri;
-        } catch {}
+        // Use placeholders for estimation as signature is limited
+        address receiver = address(0);
+        uint256 tokenId = 0;
+        string memory tokenURI = "";
 
         bytes memory data = abi.encode(receiver, tokenId, tokenURI);
         

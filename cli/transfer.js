@@ -54,7 +54,7 @@ async function main() {
     // ABIs (Simplified for this script, in production use full ABIs)
     const bridgeAbi = [
         "function sendNFT(uint64 destinationChainSelector, address receiver, uint256 tokenId) external returns (bytes32 messageId)",
-        "function estimateTransferCost(uint64 destinationChainSelector, address receiver, uint256 tokenId) external view returns (uint256)",
+        "function estimateTransferCost(uint64 destinationChainSelector) external view returns (uint256)",
         "event NFTSent(bytes32 messageId, uint64 destinationChainSelector, address receiver, uint256 tokenId, string tokenURI)"
     ];
     const nftAbi = [
@@ -94,7 +94,7 @@ async function main() {
 
     // Estimate cost
     const destSelector = chains[to].selector;
-    const cost = await bridgeContract.estimateTransferCost(destSelector, receiver, tokenId);
+    const cost = await bridgeContract.estimateTransferCost(destSelector);
     console.log(`Estimated cost: ${ethers.utils.formatEther(cost)} LINK`);
 
     // Execute transfer
